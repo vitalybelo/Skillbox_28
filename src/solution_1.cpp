@@ -1,5 +1,4 @@
 #include "SwimmingPool.h"
-using namespace std;
 
 #define DISTANCE 25
 #define SWIMMER_SIZE 6

@@ -1,6 +1,7 @@
 #include "SwimmingPool.h"
 
-SwimmingPool::SwimmingPool(int distance, Swimmer *swimmers, int sizeSwimmers) {
+SwimmingPool::SwimmingPool(int distance, Swimmer *swimmers, int sizeSwimmers)
+{
     this->distance = distance;
     for (int i = 0; i < sizeSwimmers; i++) {
         swimmers[i].distance = distance;
@@ -8,8 +9,8 @@ SwimmingPool::SwimmingPool(int distance, Swimmer *swimmers, int sizeSwimmers) {
     }
 }
 
-void SwimmingPool::competition() {
-
+void SwimmingPool::competition()
+{
     for (int i = 0; i < swimmers.size(); i++) {
         threads.emplace_back(&SwimmingPool::run, this, i);
     }
@@ -17,8 +18,8 @@ void SwimmingPool::competition() {
     threads.clear();
 }
 
-void SwimmingPool::run(int i) {
-
+void SwimmingPool::run(int i)
+{
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> dist(1,100);
@@ -50,8 +51,8 @@ void SwimmingPool::run(int i) {
     winners_access.unlock();
 }
 
-void SwimmingPool::printResults() {
-
+void SwimmingPool::printResults()
+{
     std::cout << std::endl << "Results of competition on distance " << distance << "m :\n";
     for (int i = 0; i < winners.size(); i++) {
         std::cout << "Place: " << (i + 1) << " :: " << swimmers[winners[i]].name << std::endl;
