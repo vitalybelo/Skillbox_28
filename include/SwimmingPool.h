@@ -2,13 +2,13 @@
 #include <iostream>
 #include <random>
 #include <vector>
-#include <mutex>
 #include <thread>
+#include <mutex>
 
 struct Swimmer {
-    std::string name;   // swimmer name
-    double speed;       // speed in meters per second
-    double distance = 100;
+    std::string name = "Dude";  // swimmer name
+    double speed = 1.5;         // speed in meters per second
+    double distance = 100.0;    // calculate left of distance
 };
 
 class SwimmingPool {

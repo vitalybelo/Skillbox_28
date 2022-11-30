@@ -25,19 +25,24 @@ void SwimmingPool::run(int i) {
     std::uniform_real_distribution<> dist_fault(0.1,0.5);
 
     while (swimmers[i].distance > 0) {
+        // wait for virtual second goes
         std::this_thread::sleep_for(std::chrono::seconds(1));
+        // decrease distance for swimmer
         swimmers[i].distance -= swimmers[i].speed;
+        // per suite random swimmer's faults
         if (dist(gen) > 80) {
             swimmers[i].distance += dist_fault(gen); // random technical fault in swimming occurred
         }
+        // display left distance
         winners_access.lock();
         if (swimmers[i].distance > 0) {
             std::cout << swimmers[i].name << " ---> " << swimmers[i].distance << std::endl;
         }
         winners_access.unlock();
     }
+    // register finished swimmer
     winners_access.lock();
-    winners.push_back(i);   // register finished swimmer
+    winners.push_back(i);
     winners_access.unlock();
 }
 
