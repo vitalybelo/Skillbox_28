@@ -30,7 +30,7 @@ void PlainPuzzle::run(int index) {
         std::this_thread::sleep_for(std::chrono::seconds(plain.flightTime));
 
         // Ожидание разрешения посадки в аэропорту назначения
-        std::cout << "\t" << plain.name << " :: ждет подтверждения на посадку\n";
+        std::cout << "\n\t" << plain.name << " :: ждет подтверждения на посадку\n";
 
         // Разрешение на посадку получено, посадка, разгрузка и вылет на базу
         airport_access.lock();

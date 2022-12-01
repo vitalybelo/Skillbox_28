@@ -6,6 +6,7 @@ add_executable(Skillbox_28
         SwimmingPool.cpp
         PlainPuzzle.cpp
         solution_1.cpp
+        solution_2.cpp
 
         )
 
