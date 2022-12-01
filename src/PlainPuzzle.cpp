@@ -46,11 +46,10 @@ void PlainPuzzle::run(int index) {
 
         // Возвращение самолета на базу
         std::this_thread::sleep_for(std::chrono::seconds(plain.flightTime));
-        //airport_access.lock();
         std::cout << std::endl << (index + 1) << ". " << plain.name << " :: совершил посадку, вернулся на базу";
         std::cout << " :: время готовности: " << plain.parkingTime << std::endl;
-        //airport_access.unlock();
-        std::this_thread::sleep_for(std::chrono::seconds(plain.parkingTime));
+        if (i > 0)
+            std::this_thread::sleep_for(std::chrono::seconds(plain.parkingTime));
     }
     std::cout << (index + 1) << ". " << plain.name << " :: миссия завершена\n";
 }

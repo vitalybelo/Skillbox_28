@@ -1,4 +1,3 @@
-#include <random>
 #include "use_lib.h"
 #include "solution.h"
 using namespace std;
@@ -32,8 +31,9 @@ int main() {
      * Вы можете указать единственный параметр n_routes для задания - сколько рейсов каждый самолёт
      * должен совершить в ЦЕНТР и вернуться назад. По умолчанию = 1. Пристегнитесь и вперед.
      */
-    solution_2(1);
+    //solution_2(1);
 
+    solution_3();
 
 
 

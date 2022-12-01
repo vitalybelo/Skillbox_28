@@ -7,6 +7,7 @@ add_executable(Skillbox_28
         PlainPuzzle.cpp
         solution_1.cpp
         solution_2.cpp
+        solution_3.cpp
 
         )
 
