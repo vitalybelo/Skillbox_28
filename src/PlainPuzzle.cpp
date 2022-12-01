@@ -35,19 +35,21 @@ void PlainPuzzle::run(int index) {
         // –азрешение на посадку получено, посадка, разгрузка и вылет на базу
         airport_access.lock();
         std::cout << "\t" << plain.name << " :: подтверждение получено, совершил посадку в аэропорту ÷≈Ќ“–\n";
-        std::cout << "\t\t" << plain.name << " :: разгрузка, ожидает разрешени€ на взлет " << plain.parkingTime
-                  << "сек.\n";
+        std::cout << "\t\t" << plain.name << " :: разгрузка, ожидает разрешени€ на взлет ";
+        std::cout << plain.parkingTime << "сек.\n";
+        // разгрузка
         std::this_thread::sleep_for(std::chrono::seconds(plain.parkingTime));
+        // взлет и возврат на базу
         std::cout << "\t\t\t" << plain.name << " :: разрешение на взлет получено, ";
         std::cout << " возвращаетс€ на базу, врем€ полета: " << plain.parkingTime << "\n\n";
         airport_access.unlock();
 
         // ¬озвращение самолета на базу
         std::this_thread::sleep_for(std::chrono::seconds(plain.flightTime));
-        airport_access.lock();
-        std::cout << (index + 1) << ". " << plain.name << " :: совершил посадку, вернулс€ на базу";
+        //airport_access.lock();
+        std::cout << std::endl << (index + 1) << ". " << plain.name << " :: совершил посадку, вернулс€ на базу";
         std::cout << " :: врем€ готовности: " << plain.parkingTime << std::endl;
-        airport_access.unlock();
+        //airport_access.unlock();
         std::this_thread::sleep_for(std::chrono::seconds(plain.parkingTime));
     }
     std::cout << (index + 1) << ". " << plain.name << " :: мисси€ завершена\n";

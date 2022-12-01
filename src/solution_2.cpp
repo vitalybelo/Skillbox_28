@@ -7,6 +7,7 @@ using namespace std;
 #define PLAIN_FLEET 3
 
 /**
+ * Внимание: парк транспортных средств заправлен и готов к работе
  * Задание №2 немного модифицировано но не упрощено, прошу простить и понять ))
  * Вместо паровозиков в задании участвуют самолеты, взлетающие со своих баз дислокации
  * Каждый самолет имеет время полета и время стоянки в аэропорту назначения - аэропорт ЦЕНТР
@@ -26,7 +27,9 @@ void solution_2(int n_routes) {
 
     Plain trains[] {{"A (Airbus 320)", dist_flight(gen), dist_parking(gen)},
                     {"B (Boeing 767)", dist_flight(gen), dist_parking(gen)},
-                    {"C (Boeing 747)", dist_flight(gen), dist_parking(gen)}};
+                    {"C (Boeing 747)", dist_flight(gen), dist_parking(gen)},
+                    {"D (Airbus 440)", dist_flight(gen), dist_parking(gen)},
+                    {"E (Dusty's 88)", dist_flight(gen), dist_parking(gen)}};
 
     PlainPuzzle fleet(trains, PLAIN_FLEET);
 
