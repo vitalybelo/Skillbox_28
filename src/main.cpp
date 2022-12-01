@@ -1,6 +1,10 @@
+#include <random>
 #include "use_lib.h"
+#include "PlainPuzzle.h"
 #include "solution.h"
 using namespace std;
+
+#define PLAIN_FLEET 3
 
 int main() {
     setlocaleRus();
@@ -17,8 +21,18 @@ int main() {
      */
     //solution_1();
 
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> dist_flight(5, 10);
+    uniform_int_distribution<> dist_parking(3,6);
 
+    Plain trains[] {{"A (Airbus 320)", dist_flight(gen), dist_parking(gen)},
+                    {"B (Boeing 767)", dist_flight(gen), dist_parking(gen)},
+                    {"C (Boeing 747)", dist_flight(gen), dist_parking(gen)}};
 
+    PlainPuzzle fleet(trains, PLAIN_FLEET);
+
+    fleet.start(1);
 
 
     return 0;
