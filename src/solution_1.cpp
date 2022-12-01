@@ -15,6 +15,8 @@
  */
 void solution_1() {
 
+    std::cout << "\n\nЗадание №1 --------------- >>\n\n";
+
     Swimmer swimmers[] {{"Michael Phelps",    1.90},
                         {"Alexey Popov",      1.88},
                         {"Kaleb Dressel",     1.89},

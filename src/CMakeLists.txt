@@ -5,6 +5,7 @@ add_executable(Skillbox_28
         use_lib.cpp
         SwimmingPool.cpp
         PlainPuzzle.cpp
+        KitchenPuzzle.cpp
         solution_1.cpp
         solution_2.cpp
         solution_3.cpp

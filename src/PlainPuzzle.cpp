@@ -11,7 +11,7 @@ void PlainPuzzle::start(int routeTimes) {
     routeNumbers = routeTimes;
     for(int i = 0; i < plains.size(); i++) {
         threads.emplace_back(&PlainPuzzle::run, this, i);
-        std::this_thread::sleep_for(std::chrono::seconds(i + 1)); // задержка отправления
+        std::this_thread::sleep_for(std::chrono::seconds(i + 1)); // Р·Р°РґРµСЂР¶РєР° РѕС‚РїСЂР°РІР»РµРЅРёСЏ
     }
     for (auto &t : threads) t.join();
     threads.clear();
@@ -24,34 +24,34 @@ void PlainPuzzle::run(int index) {
 
     int i = routeNumbers;
     while (i-- > 0) {
-        // Вылет в аэропорт назначения
-        std::cout << (index + 1) << ". " << plain.name << " :: вылетел по маршруту ЦЕНТР ";
-        std::cout << "(время полета: " << plain.flightTime << " :: время стоянки: " << plain.parkingTime << ")\n";
+        // Р’С‹Р»РµС‚ РІ Р°СЌСЂРѕРїРѕСЂС‚ РЅР°Р·РЅР°С‡РµРЅРёСЏ
+        std::cout << (index + 1) << ". " << plain.name << " :: РІС‹Р»РµС‚РµР» РїРѕ РјР°СЂС€СЂСѓС‚Сѓ Р¦Р•РќРўР  ";
+        std::cout << "(РІСЂРµРјСЏ РїРѕР»РµС‚Р°: " << plain.flightTime << " :: РІСЂРµРјСЏ СЃС‚РѕСЏРЅРєРё: " << plain.parkingTime << ")\n";
         std::this_thread::sleep_for(std::chrono::seconds(plain.flightTime));
 
-        // Ожидание разрешения посадки в аэропорту назначения
-        std::cout << "\n\t" << plain.name << " :: ждет подтверждения на посадку\n";
+        // РћР¶РёРґР°РЅРёРµ СЂР°Р·СЂРµС€РµРЅРёСЏ РїРѕСЃР°РґРєРё РІ Р°СЌСЂРѕРїРѕСЂС‚Сѓ РЅР°Р·РЅР°С‡РµРЅРёСЏ
+        std::cout << "\n\t" << plain.name << " :: Р¶РґРµС‚ РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ РЅР° РїРѕСЃР°РґРєСѓ\n";
 
-        // Разрешение на посадку получено, посадка, разгрузка и вылет на базу
+        // Р Р°Р·СЂРµС€РµРЅРёРµ РЅР° РїРѕСЃР°РґРєСѓ РїРѕР»СѓС‡РµРЅРѕ, РїРѕСЃР°РґРєР°, СЂР°Р·РіСЂСѓР·РєР° Рё РІС‹Р»РµС‚ РЅР° Р±Р°Р·Сѓ
         airport_access.lock();
-        std::cout << "\t" << plain.name << " :: подтверждение получено, совершил посадку в аэропорту ЦЕНТР\n";
-        std::cout << "\t\t" << plain.name << " :: разгрузка, ожидает разрешения на взлет ";
-        std::cout << plain.parkingTime << "сек.\n";
-        // разгрузка
+        std::cout << "\t" << plain.name << " :: РїРѕРґС‚РІРµСЂР¶РґРµРЅРёРµ РїРѕР»СѓС‡РµРЅРѕ, СЃРѕРІРµСЂС€РёР» РїРѕСЃР°РґРєСѓ РІ Р°СЌСЂРѕРїРѕСЂС‚Сѓ Р¦Р•РќРўР \n";
+        std::cout << "\t\t" << plain.name << " :: СЂР°Р·РіСЂСѓР·РєР°, РѕР¶РёРґР°РµС‚ СЂР°Р·СЂРµС€РµРЅРёСЏ РЅР° РІР·Р»РµС‚ ";
+        std::cout << plain.parkingTime << "СЃРµРє.\n";
+        // СЂР°Р·РіСЂСѓР·РєР°
         std::this_thread::sleep_for(std::chrono::seconds(plain.parkingTime));
-        // взлет и возврат на базу
-        std::cout << "\t\t\t" << plain.name << " :: разрешение на взлет получено, ";
-        std::cout << " возвращается на базу, время полета: " << plain.parkingTime << "\n\n";
+        // РІР·Р»РµС‚ Рё РІРѕР·РІСЂР°С‚ РЅР° Р±Р°Р·Сѓ
+        std::cout << "\t\t\t" << plain.name << " :: СЂР°Р·СЂРµС€РµРЅРёРµ РЅР° РІР·Р»РµС‚ РїРѕР»СѓС‡РµРЅРѕ, ";
+        std::cout << " РІРѕР·РІСЂР°С‰Р°РµС‚СЃСЏ РЅР° Р±Р°Р·Сѓ, РІСЂРµРјСЏ РїРѕР»РµС‚Р°: " << plain.parkingTime << "\n\n";
         airport_access.unlock();
 
-        // Возвращение самолета на базу
+        // Р’РѕР·РІСЂР°С‰РµРЅРёРµ СЃР°РјРѕР»РµС‚Р° РЅР° Р±Р°Р·Сѓ
         std::this_thread::sleep_for(std::chrono::seconds(plain.flightTime));
-        std::cout << std::endl << (index + 1) << ". " << plain.name << " :: совершил посадку, вернулся на базу";
-        std::cout << " :: время готовности: " << plain.parkingTime << std::endl;
+        std::cout << std::endl << (index + 1) << ". " << plain.name << " :: СЃРѕРІРµСЂС€РёР» РїРѕСЃР°РґРєСѓ, РІРµСЂРЅСѓР»СЃСЏ РЅР° Р±Р°Р·Сѓ";
+        std::cout << " :: РІСЂРµРјСЏ РіРѕС‚РѕРІРЅРѕСЃС‚Рё: " << plain.parkingTime << std::endl;
         if (i > 0)
             std::this_thread::sleep_for(std::chrono::seconds(plain.parkingTime));
     }
-    std::cout << (index + 1) << ". " << plain.name << " :: миссия завершена\n";
+    std::cout << (index + 1) << ". " << plain.name << " :: РјРёСЃСЃРёСЏ Р·Р°РІРµСЂС€РµРЅР°\n";
 }
 
 

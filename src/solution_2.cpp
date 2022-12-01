@@ -20,6 +20,8 @@ using namespace std;
  */
 void solution_2(int n_routes) {
 
+    std::cout << "\n\nЗадание №2 --------------- >>\n\n";
+
     random_device rd;
     mt19937 gen(rd());
     uniform_int_distribution<> dist_flight(5, 10);
